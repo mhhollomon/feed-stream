@@ -1,8 +1,9 @@
 import datetime
 
+import src.config as config
 import peewee
 
-db = peewee.SqliteDatabase('feed_database.sqlite3')
+db = peewee.SqliteDatabase(config.DB_FILE)
 
 
 class BaseModel(peewee.Model):

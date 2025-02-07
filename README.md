@@ -3,11 +3,13 @@ atproto feed generator based on jetstream
 
 Multiple feeds will be supported.
 
+However, only posts (not likes and follows) are currently consumed.
+
 # Reader (working)
 
 Opens a websocket on the Jetstream. Only subscribes to posts (not likes, follows, etc)
 
-For each messages see if it is wanted and writes a row to the `post` table if so.
+For each message, sees if it is wanted and writes a row to the `post` table if so.
 
 # Server (not started)
 

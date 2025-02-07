@@ -1,6 +1,8 @@
-peewee~=3.16.2
+peewee~=3.17.9
 Flask~=2.3.2
 python-dotenv~=1.0.0
 
 websocket-client
 rel
+
+waitress
