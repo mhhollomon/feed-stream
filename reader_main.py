@@ -13,7 +13,10 @@ logging.getLogger('peewee').setLevel(logging.INFO)
 if __name__ == "__main__":
     #websocket.enableTrace(True)
     ws = create_websocket()
-    ws.run_forever(dispatcher=rel, reconnect=5)  # Set dispatcher to automatic reconnection, 5 second reconnect delay if connection closed unexpectedly
+
+    # Set dispatcher to automatic reconnection, 5 second reconnect delay if connection closed unexpectedly
+    ws.run_forever(dispatcher=rel, reconnect=5) 
+    
     rel.signal(2, rel.abort)  # Keyboard Interrupt
     create_periodic()
     rel.dispatch()
