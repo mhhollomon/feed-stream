@@ -1,5 +1,5 @@
 
-from . import feeddata, music
+from . import feeddata, muwee
 FEEDS = [
     music.feed
 ]
