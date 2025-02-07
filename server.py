@@ -8,7 +8,9 @@ from src.server.feed_skeleton import compute_feed
 
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+from waitress import serve
+
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
@@ -74,4 +76,5 @@ def get_feed_skeleton():
     return jsonify(body)
 
 if __name__ == '__main__' :
-    app.run(host=config.BIND_ADDR, port=config.BIND_PORT )
+    #app.run(host=config.BIND_ADDR, port=config.BIND_PORT )
+    serve(app=app, host=config.BIND_ADDR, port=config.BIND_PORT )
