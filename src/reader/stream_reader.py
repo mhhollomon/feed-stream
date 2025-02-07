@@ -20,21 +20,18 @@ CREATED : list[dict] = []
 DELETED : list = []
 
 def sweep_to_db() -> bool :
-    logger.debug("------------- Starting DB writes")
-    logger.debug("---- deleting records")
     with db.atomic() :
         Post.delete().where(Post.uri.in_(DELETED)) # type: ignore
         logger.debug(f"Deleted {len(DELETED)} records")
     DELETED.clear()
 
-    logger.debug("---- writing records")
     if len(CREATED) > 0 :
         with db.atomic() :
             Post.insert_many(CREATED).execute()
         logger.debug(f"Wrote {len(CREATED)} records")
         CREATED.clear()
     else :
-        logger.debug(f"Nothing to do")
+        logger.debug(f"NO records to write")
 
     return True
 

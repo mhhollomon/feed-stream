@@ -8,4 +8,4 @@ def filter(author : str, record : dict) -> bool :
 def get_posts() :
     return Post.select().where(Post.feed == 'music')
 
-music_feed = FeedData('music', filter, get_posts)
+feed = FeedData('music', filter, get_posts)

@@ -1,7 +1,7 @@
 
 from . import feeddata, music
 FEEDS = [
-    music.music_feed
+    music.feed
 ]
 
 def find_feed(shortname : str | None) -> feeddata.FeedData | None :
