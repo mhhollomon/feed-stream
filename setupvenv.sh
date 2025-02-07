@@ -3,7 +3,7 @@
 set -e
 
 if [ ! -d ".venv" ]; then
-  virtualenv .venv || exit
+  python -m venv .venv || exit
 fi
 
 . .venv/bin/activate
