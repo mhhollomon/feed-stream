@@ -10,7 +10,7 @@ import logging
 
 from waitress import serve
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(name)s:%(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
@@ -44,11 +44,8 @@ def did_json():
 def describe_feed_generator():
     feeds = [{'uri': at_feed_uri(f.shortname)} for f in FEEDS]
     response = {
-        'encoding': 'application/json',
-        'body': {
-            'did': config.SERVICE_DID,
-            'feeds': feeds
-        }
+        'did': config.SERVICE_DID,
+        'feeds': feeds
     }
     return jsonify(response)
 
@@ -57,6 +54,9 @@ def describe_feed_generator():
 def get_feed_skeleton():
     feed_uri = request.args.get('feed', default=None, type=str)
     if not feed_uri :
+        return '', 404
+    
+    if config.OWNER_DID not in feed_uri :
         return '', 404
     
     feed = feed_uri.split('/')[-1]

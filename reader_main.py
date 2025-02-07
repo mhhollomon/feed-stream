@@ -5,7 +5,7 @@ from src.reader.stream_reader import create_websocket, create_periodic
 import logging
 import rel
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s:%(name)s:%(levelname)s - %(message)s')
 
 # don't currently need all the stuff from the database
 logging.getLogger('peewee').setLevel(logging.INFO)
