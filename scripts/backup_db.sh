@@ -6,14 +6,19 @@ DEST_DIR=$1
 SOURCE_DB=$2
 
 
-if [ -z "${DEST_DIR}"]; then
+if [ -z "${DEST_DIR}" ]; then
     echo "No destination directory specified"
     exit 3
 fi
 
 if [ -z "$SOURCE_DB" ]; then
-    . .env
-    SOURCE_DB=${DATABASE_LOCATION}
+    path=${0%/*}
+    env_path="${path}/../.env"
+
+    if [ -f $env_path ]; then
+        . ${env_path}
+        SOURCE_DB=${DATABASE_LOCATION}
+    fi
 
     if [ -z "$SOURCE_DB" ]; then
         echo "No Source Database given"
