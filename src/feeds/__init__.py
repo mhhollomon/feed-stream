@@ -1,7 +1,7 @@
 
-from . import feeddata, muwee
+from . import feeddata, music
 FEEDS = [
-    muwee.feed
+    music.feed
 ]
 
 def find_feed(shortname : str | None) -> feeddata.FeedData | None :
