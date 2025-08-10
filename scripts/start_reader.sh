@@ -2,6 +2,8 @@
 
 set -e
 
-. .venv/bin/activate
+code_home=${0%/*}
+venv=${code_home}/../.venv
+. ${venv}/bin/activate
 
 python reader_main.py
