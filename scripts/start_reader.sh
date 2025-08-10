@@ -6,4 +6,4 @@ code_home=${0%/*}
 venv=${code_home}/../.venv
 . ${venv}/bin/activate
 
-python reader_main.py
+python ${code_home}/reader_main.py
