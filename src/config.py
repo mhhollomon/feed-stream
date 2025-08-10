@@ -1,6 +1,6 @@
 from dotenv import dotenv_values
 
-_config : dict = dotenv_values(".env")
+_config : dict = dotenv_values()
 
 
 DB_FILE = _config['DATABASE_LOCATION']
