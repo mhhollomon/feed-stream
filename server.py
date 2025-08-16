@@ -1,3 +1,5 @@
+import os
+from typing import Any, Dict
 from flask import Flask, request, abort, jsonify
 import src.config as config
 
@@ -76,5 +78,24 @@ def get_feed_skeleton():
     return jsonify(body)
 
 if __name__ == '__main__' :
-    #app.run(host=config.BIND_ADDR, port=config.BIND_PORT )
-    serve(app=app, host=config.BIND_ADDR, port=config.BIND_PORT )
+    options : Dict[str, Any] = {}
+
+    if config.WAITRESS_PREFIX:
+        options["url_prefix"] = config.WAITRESS_PREFIX
+
+    listen = config.WAITRESS_LISTEN
+
+    if listen:
+        if listen.startswith("/"):
+            options["unix_socket"] = listen
+            options["unix_socket_perms"] = '660'
+        else :
+            options["listen"] = listen
+
+    print(f"startup options = {options}")
+
+    if os.getenv("FLASK_ENV") == "production":
+        from waitress import serve
+        serve(app, **options)
+    else :
+        app.run(debug=True)
