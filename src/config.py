@@ -11,6 +11,6 @@ SERVICE_DID = f"did:web:{HOSTNAME}"
 
 OWNER_DID = _config['OWNER_DID']
 
-WAITRESS_LISTEN = _config['WAITRESS_LISTEN'] or 'localhost:3000'
+WAITRESS_LISTEN = _config.get('WAITRESS_LISTEN') or 'localhost:3000'
 
-WAITRESS_PREFIX = _config['WAITRESS_PREFIX']
+WAITRESS_PREFIX = _config.get('WAITRESS_PREFIX')
